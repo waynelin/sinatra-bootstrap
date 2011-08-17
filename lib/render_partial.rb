@@ -6,6 +6,20 @@ module Sinatra
     def partial(page, options={})
       haml page, options.merge!(:layout => false)
     end
+    
+    def current?(path='')
+        path.empty? ? path='/': path=path
+        request.path_info==path ? 'current':  ''
+    end
+    
+    def path()
+        fullPath = request.path_info.split('/')
+        fullPath.empty? ? fullPath << 'home' : fullPath = fullPath.drop(1)
+        fullPath = fullPath.map {|path| 
+          path.split('-').each do |part| part = part.gsub(/\W+/,'') end
+        }
+        return fullPath
+    end
   end
  
   helpers RenderPartial

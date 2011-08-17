@@ -1,15 +1,16 @@
 !!!
 %html{html_attrs}
   %head
+    = partial :_meta
     %meta{:'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
     %meta{:name => "lang", :content => "en"}
-    %title Sinatra Bootstrap
+    %title #{@title} | #{settings.baseTitle}
     %link{:href=>'/stylesheets/application.css', :media => "screen", :rel => 'stylesheet', :type => "text/css"}
     %script{:type => "text/javascript", :src => "http://code.jquery.com/jquery-1.5.min.js"}
     %script{:type => "text/javascript", :src => "/javascripts/lib/modernizr-1.6.min.js"}
     %script{:type => "text/javascript", :src => "/javascripts/application.js"}
-    
+    = partial :_analytics
   %body
     = partial :_nav_main
+    %noscript Javascript is required for this site to work, please enable javascript ins your browser or choose a different browser. Suggested browsers are Safari or Chrome.
     = yield
-    = partial :_analytics
